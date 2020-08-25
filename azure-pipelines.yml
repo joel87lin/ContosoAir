@@ -3,9 +3,6 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- master
-
 pool:
   vmImage: ubuntu-16.04
 trigger:
@@ -15,9 +12,9 @@ steps:
     inputs:
       command: 'custom'
       customcommand: 'install --production'
-      - script:'npm audit fix'
-      displayName: 'Fixing NPM versions'
-      continueOnError: true
+  - script: 'npm audit fix'
+    displayName: 'Fixing NPM versions'
+    continueOnError: true
   - script: 'npm test'
     displayName: 'Run unit tests'
     continueOnError: true
